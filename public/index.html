@@ -1,79 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chatter</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style>
-        form {
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            padding-right: 50x;     
-        }
-
-        #messages {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-
-        #messages li {
-            padding: 5px 10px;
-        }
-
-        #messages li:nth-child(odd) {
-            background: #eee;
-            text-align: right
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
 </head>
-<body>
 
-    <div class="container-fluid">
-        <div class="row" style="padding: 20px; padding-right: 50px">
-            <ul id="messages"></ul>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Tech space chatter!</h1>
+            <p class="lead">select a room</p>
         </div>
+
+    </div>
+    <div style="padding: 0 50px" class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
-                <form action="">
-                    <div class="input-group mb-3">
-                        <input id="msg" autocomplete="off" type="text" class="form-control" placeholder="Message ..." aria-label="Message ...">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Send</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <ul class="list-group col">
+                <a href="/javascript" class="list-group-item list-group-item-action">Javascript</a>
+                <a href="/swift" class="list-group-item list-group-item-action">Swift</a>
+                <a href="/go" class="list-group-item list-group-item-action" >Go</a>
+            </ul>
+
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-
-        const socket = io('/tech');
-        const room = 'javascript';
-
-        $('form').submit(function () {
-            let msg = $('#msg').val();
-            socket.emit('message' , { msg : msg , room : room});
-            $('#msg').val('');
-            return false;
-        })
-
-        socket.on("connect" , function () {
-            socket.emit('join', { room : room });
-        })
-        socket.on("message", function (data) {
-            $('#messages').append($('<li>').text(data));
-        })
-        
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

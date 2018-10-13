@@ -7,10 +7,20 @@ server.listen(port , () => {
     console.log(`server listening on ${port}`);
 })
 
-app.get('*', (req, res)=>{
+app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/public/index.html');
 })
 
+app.get('/javascript', (req, res)=>{
+    res.sendFile(__dirname + '/public/javascript.html');
+})
+
+app.get('/go', (req, res)=>{
+    res.sendFile(__dirname + '/public/go.html');
+})
+app.get('/swift', (req, res)=>{
+    res.sendFile(__dirname + '/public/swift.html');
+})
 
 const tech = io.of('/tech')
 tech.on("connection", (socket) => {
@@ -24,9 +34,8 @@ tech.on("connection", (socket) => {
         tech.in(data.room).emit('message',data.msg);
     })
 
-    socket.on('disconnect' , () => {
-        console.log('user disconnected ');
-        tech.emit('message' , 'user disconnected ')
+    socket.on('disconnect' , (data) => {
+        tech.in(data.room).emit('message' , 'user disconnected ')
     })
 })
 
